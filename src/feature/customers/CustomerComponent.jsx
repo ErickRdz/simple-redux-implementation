@@ -8,14 +8,29 @@ const actions = {
 
 class CustomerComponent extends Component {
     render() {
+
+        const handleSaveCustomerId = () => {
+            let customerId = document.getElementById("customerId").value;
+            
+            try{
+                this.props.saveCustomerId(customerId);
+                alert("Se guardo correctamente el id del cliente");
+            }catch(error){
+                alert("Ocurrio un error: " + error);
+                console.log(error);
+            }
+            
+        }
+
         return (
             <Fragment>
                 <h1>Datos del cliente</h1>
                 <br/><br/>
                 <div>
-                    <input onClick={() => this.props.saveCustomerId(9)} type="button" value="Guardar id del cliente" />
-                    <br/>
-                    <input onClick={() => this.props.history.push('/reporte')} type="button" value="Ver reporte" />
+                    <input id="customerId" type="text" placeholder="Id del cliente" />
+                    <input onClick={() => handleSaveCustomerId()} type="button" value="Guardar id del cliente" />
+                    <br/><br/><br/>
+                    <input onClick={() => this.props.history.push('/reporte')} type="button" value="Ver datos del cliente" />
                 </div>
             </Fragment>
             
